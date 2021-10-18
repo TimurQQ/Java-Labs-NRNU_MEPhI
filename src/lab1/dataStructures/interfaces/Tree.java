@@ -1,7 +1,7 @@
-package dataStructures.interfaces;
+package lab1.dataStructures.interfaces;
 
-import dataStructures.AbstractTree;
-import dataStructures.Node;
+import lab1.dataStructures.AbstractTree;
+import lab1.dataStructures.Node;
 
 public interface Tree<T> {
 
@@ -14,6 +14,8 @@ public interface Tree<T> {
     Node<T> getChild(int index);
 
     Node<T> getParent();
+
+    int getHeight();
 
     List<Node<T>> path();
 

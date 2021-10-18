@@ -1,8 +1,9 @@
-package dataStructures.interfaces;
+package lab1.dataStructures.interfaces;
 
 import java.util.function.Predicate;
 
 public interface List<T> {
+
     void add(T element);
 
     void add(int index, T obj);

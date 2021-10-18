@@ -1,4 +1,4 @@
-package dataStructures.interfaces;
+package lab1.dataStructures.interfaces;
 
 public interface Map<K, V> {
     void put(K key, V value);

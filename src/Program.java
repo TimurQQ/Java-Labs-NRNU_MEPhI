@@ -1,7 +1,9 @@
-import dataStructures.AbstractTree;
-import dataStructures.ArrayList;
-import dataStructures.HashMap;
-import dataStructures.Node;
+import lab1.dataStructures.AbstractTree;
+import lab1.dataStructures.ArrayList;
+import lab1.dataStructures.HashMap;
+import lab1.dataStructures.Node;
+import lab2.ListUtils;
+import lab2.TreeUtils;
 
 public class Program {
 
@@ -14,6 +16,40 @@ public class Program {
 
         //AbstractTree Testing
         startAbstractTreeTesting();
+
+        //merge Testing
+        startMergeTesting();
+
+        //getDeep Testing
+        startGetDeepTesting();
+    }
+
+    private static void startGetDeepTesting() {
+        AbstractTree<String> t = new AbstractTree<>("987743");
+        t.addChild(new Node<>("-100"));
+        t.addChild(new Node<>("***"));
+        t.getChild(1).addChild(new Node<>("999"));
+        t.getChild(1).getChild(0).addChild(new Node<>("pippop"));
+        AbstractTree<String> t1 = t.getChild(1).subtree();
+        System.out.println(TreeUtils.deep(t));
+    }
+
+    private static void startMergeTesting() {
+        ArrayList<Integer> a = new ArrayList<>();
+        ArrayList<Integer> b = new ArrayList<>();
+        a.add(1);
+        a.add(2);
+        a.add(3);
+        a.add(4);
+        a.add(5);
+        a.add(6);
+        a.add(7);
+        System.out.println(a);
+        b.add(8);
+        b.add(9);
+        b.add(10);
+        System.out.println(b);
+        System.out.println(ListUtils.merge(a, b));
     }
 
     private static void startListTesting() {

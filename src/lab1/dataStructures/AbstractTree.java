@@ -1,6 +1,6 @@
-package dataStructures;
+package lab1.dataStructures;
 
-import dataStructures.interfaces.List;
+import lab1.dataStructures.interfaces.List;
 
 public class AbstractTree<T> extends Node<T> {
 
@@ -14,6 +14,7 @@ public class AbstractTree<T> extends Node<T> {
 
     public AbstractTree(Node<T> node) {
         this.value = node.value;
+        this.subtreeHeight = node.subtreeHeight;
         this.childs = node.childs;
         this.parent = null;
     }

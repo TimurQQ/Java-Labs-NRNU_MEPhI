@@ -1,16 +1,16 @@
-package dataStructures;
+package lab1.dataStructures;
 
-import dataStructures.interfaces.List;
+import lab1.dataStructures.interfaces.List;
 
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-
+@SuppressWarnings("unchecked")
 public class ArrayList<T> implements List<T> {
     private static final int DEFAULT_CAPACITY = 10;
     private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 16;
-    protected int size = 0;//the number of elements
-    protected Object[] items;//storage for elements
+    private int size = 0;
+    private Object[] items;
 
     public ArrayList() {
         this.items = new Object[DEFAULT_CAPACITY];
@@ -80,7 +80,6 @@ public class ArrayList<T> implements List<T> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public T set(int index, T element) {
         if (index >= size) {
             add(element);
@@ -114,7 +113,6 @@ public class ArrayList<T> implements List<T> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public int indexByPredicate(Predicate<T> predicate) {
         for (int i = 0; i < size; ++i) {
             if (predicate.test((T) items[i]))
@@ -147,14 +145,12 @@ public class ArrayList<T> implements List<T> {
     }
 
     private void resizeBuffer(int minCapacity) {
-        // overflow-conscious code
         int oldCapacity = items.length;
         int newCapacity = oldCapacity + (oldCapacity >> 1);
         if (newCapacity - minCapacity < 0)
             newCapacity = minCapacity;
         if (newCapacity - MAX_ARRAY_SIZE > 0)
             newCapacity = hugeCapacity(minCapacity);
-        // minCapacity is usually close to size, so this is a win:
         items = Arrays.copyOf(items, newCapacity);
     }
 

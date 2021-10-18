@@ -1,29 +1,41 @@
-package dataStructures;
+package lab1.dataStructures;
 
-import dataStructures.interfaces.List;
-import dataStructures.interfaces.Tree;
+import lab1.dataStructures.interfaces.List;
+import lab1.dataStructures.interfaces.Tree;
 
 public class Node<E> implements Tree<E> {
     E value;
+    int subtreeHeight;
     List<Node<E>> childs;
     Node<E> parent;
 
+    @SuppressWarnings("unchecked")
     public Node() {
         this.value = (E) new Object();
         childs = new ArrayList<>();
         parent = null;
+        subtreeHeight = 1;
     }
 
     public Node(E value) {
         this.value = value;
         childs = new ArrayList<>();
         parent = null;
+        subtreeHeight = 1;
     }
 
     @Override
     public void addChild(Node<E> newChild) {
+        if (childs.isEmpty()) changeParentHeight(newChild.subtreeHeight);
         childs.add(newChild);
         newChild.parent = this;
+    }
+
+    private void changeParentHeight(int dHeight) {
+        subtreeHeight += dHeight;
+        if (parent != null) {
+            parent.changeParentHeight(dHeight);
+        }
     }
 
     @Override
@@ -47,11 +59,16 @@ public class Node<E> implements Tree<E> {
     }
 
     @Override
+    public int getHeight() {
+        return subtreeHeight;
+    }
+
+    @Override
     public List<Node<E>> path() {
         List<Node<E>> res = new ArrayList<>();
         Node<E> curNode = this;
         res.add(curNode);
-        while(curNode.parent != null) {
+        while (curNode.parent != null) {
             curNode = curNode.parent;
             res.add(curNode);
         }
@@ -60,7 +77,7 @@ public class Node<E> implements Tree<E> {
 
     @Override
     public AbstractTree<E> subtree() {
-        return new AbstractTree(this);
+        return new AbstractTree<E>(this);
     }
 
     @Override

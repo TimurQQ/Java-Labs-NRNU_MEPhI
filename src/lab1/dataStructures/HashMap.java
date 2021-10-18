@@ -1,16 +1,16 @@
-package dataStructures;
+package lab1.dataStructures;
 
-import dataStructures.interfaces.List;
-import dataStructures.interfaces.Map;
+import lab1.dataStructures.interfaces.List;
+import lab1.dataStructures.interfaces.Map;
 
 import java.util.Objects;
 import java.util.function.Predicate;
 
 public class HashMap<K, V> implements Map<K, V> {
-    public static int BASIC_CAPACITY = 1024;
-    public static int MAX_CAPACITY = Integer.MAX_VALUE - 16;
-    List<Entry<K, V>>[] buckets;
-    List<K> keys;
+    private static final int BASIC_CAPACITY = 1024;
+    private static final int MAX_CAPACITY = Integer.MAX_VALUE - 16;
+    private final List<Entry<K, V>>[] buckets;
+    private final List<K> keys;
     private final int capacity;
     private int size = 0;
 
