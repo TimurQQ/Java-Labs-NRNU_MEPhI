@@ -2,12 +2,89 @@ import lab1.dataStructures.AbstractTree;
 import lab1.dataStructures.ArrayList;
 import lab1.dataStructures.HashMap;
 import lab1.dataStructures.Node;
+import lab1.dataStructures.interfaces.List;
+import lab1.dataStructures.interfaces.Map;
 import lab2.ListUtils;
 import lab2.TreeUtils;
+
+import java.util.Scanner;
 
 public class Program {
 
     public static void main (String[] args){
+        int choice = menu();
+        switch (choice) {
+            case 1:
+                solveTask1();
+                break;
+            case 2:
+                solveTask2();
+                break;
+            case 3:
+                startTesting();
+                break;
+            default:
+        }
+    }
+
+    private static void solveTask1() {
+        Scanner input = new Scanner(System.in);
+        Map<String, Integer> hashMap = new HashMap<>();
+        String s = input.nextLine();
+        String[] words = s.split(" ");
+        for (String word : words) {
+            if (hashMap.keyContains(word)) {
+                Integer preValue = hashMap.get(word);
+                hashMap.put(word, preValue + 1);
+            } else {
+                hashMap.put(word, 1);
+            }
+        }
+        List<Map.Entry<String, Integer>> entries = hashMap.getEntries();
+        for (int i = 0; i < entries.size(); ++i) {
+            System.out.print(entries.get(i).key + ":" + entries.get(i).value + " ");
+        }
+    }
+
+    private static void solveTask2() {
+        Scanner input = new Scanner(System.in);
+        Map<String, Integer> hashMap = new HashMap<>();
+        String s = input.nextLine();
+        String[] words = s.split(" ");
+        List<String> resultWords = new ArrayList<>();
+        for (String word : words) {
+            if (hashMap.keyContains(word)) {
+                Integer preValue = hashMap.get(word);
+                hashMap.put(word, preValue + 1);
+            } else {
+                hashMap.put(word, 1);
+            }
+        }
+        for (String word : words) {
+            if (hashMap.get(word) == 1) {
+                resultWords.add(word);
+                System.out.print(word + " ");
+            }
+        }
+    }
+
+    private static int menu() {
+
+        int selection;
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Choose from these choices");
+        System.out.println("-------------------------\n");
+        System.out.println("1 - Solve Task 1");
+        System.out.println("2 - Solve Task 2");
+        System.out.println("3 - Run Testing");
+        System.out.println("4 - Quit");
+
+        selection = input.nextInt();
+        return selection;
+    }
+
+    private static void startTesting() {
         //List Testing
         startListTesting();
 
